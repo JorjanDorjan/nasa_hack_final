@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Identificador de exoplanetas{% endblock %}
+{% block content %}
+<section class="page pad identificador-page">
+  <h1>Identificador de exoplanetas</h1>
+  <form method="POST" class="form-grid" action="{{ url_for('identificador') }}">
+    <label>Periodo (días) <span class="info" title="Tiempo entre tránsitos consecutivos. Unidades: días.">❓</span>
+      <input type="number" step="any" name="period" required class="scan-trigger">
+    </label>
+    <label>Duración (días) <span class="info" title="Duración del tránsito observada. Unidades: días.">❓</span>
+      <input type="number" step="any" name="duration" required class="scan-trigger">
+    </label>
+    <label>Profundidad <span class="info" title="Fracción de luz bloqueada durante el tránsito. Valor adimensional o en ppm.">❓</span>
+      <input type="number" step="any" name="depth" required class="scan-trigger">
+    </label>
+    <label>Radio planeta (R⊕) <span class="info" title="Radio del planeta en radios terrestres (R⊕).">❓</span>
+      <input type="number" step="any" name="planet_radius" required class="scan-trigger">
+    </label>
+    <label>Temperatura estrella (K) <span class="info" title="Temperatura efectiva de la estrella en Kelvin (K).">❓</span>
+      <input type="number" step="any" name="stellar_teff" required class="scan-trigger">
+    </label>
+    <label>Radio estrella (R☉) <span class="info" title="Radio de la estrella en radios solares (R☉).">❓</span>
+      <input type="number" step="any" name="stellar_radius" required class="scan-trigger">
+    </label>
+    <label>Masa estrella (M☉) <span class="info" title="Indica la masa de la estrella anfitriona relativa al Sol (1 = masa solar).">❓</span>
+      <input type="number" step="any" name="stellar_mass" required class="scan-trigger">
+    </label>
+    <label>Insolación <span class="info" title="Flujo de energía recibido por el planeta relativo a la Tierra (1 = igual a la Tierra).">❓</span>
+      <input type="number" step="any" name="insolation" required class="scan-trigger">
+    </label>
+    <div style="grid-column:1/-1">
+      <button class="btn primary" type="submit">Predecir</button>
+      <a class="btn ghost" href="{{ url_for('herramienta') }}">Volver</a>
+    </div>
+  </form>
+
+  {% if prediction %}
+    <div class="result">Resultado: {{ prediction }}</div>
+  {% endif %}
+</section>
+{% endblock %}

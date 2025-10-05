@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Contenidos{% endblock %}
+{% block head %}
+<style>
+  .cards-zigzag{ display:grid; grid-template-columns: 1fr; gap:1.25rem; padding:2rem; max-width:1100px; margin:0 auto }
+  @media (min-width: 860px){
+    .cards-zigzag{ grid-template-columns: 1fr 1fr }
+    .cards-zigzag .card-planet:nth-child(odd){ grid-column: 1 }
+    .cards-zigzag .card-planet:nth-child(even){ grid-column: 2 }
+  }
+  .card-planet{
+    position:relative; min-height: 220px; border-radius:18px; overflow:hidden; cursor:pointer;
+    border:1px solid rgba(120,170,255,.25);
+    background:#0b1535;
+    display:grid; place-items:end start;
+  }
+  .card-planet .bg{ position:absolute; inset:0; background-size:cover; background-position:center; filter: saturate(1.1) contrast(1.05); transform: scale(1.02); transition: transform .3s ease }
+  .card-planet::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55)); }
+  .card-planet:hover .bg{ transform: scale(1.06) }
+  .card-planet .title{ position:relative; z-index:1; font-size:1.5rem; font-weight:900; padding:1rem; text-shadow:0 2px 10px rgba(0,0,0,.6) }
+  .card-planet .overlay{ position:absolute; inset:auto 0 0 0; padding:1rem; background: linear-gradient(180deg, transparent, rgba(5,12,35,.85)); color:var(--ink) }
+  .card-planet .overlay p{ margin:.25rem 0 0; font-size:.95rem }
+</style>
+{% endblock %}
+{% block content %}
+<section class="page">
+  <h1>Contenidos</h1>
+  <p class="center">Explora los contenidos a través de estas tarjetas con temática planetaria.</p>
+  <div class="cards-zigzag">
+    <a class="card-planet" href="{{ url_for('tema', slug='que-son-los-exoplanetas') }}">
+      <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=1600&auto=format&fit=crop');"></div>
+      <div class="overlay">
+        <div class="title">Mercurio</div>
+        <p>Mercurio, el más cercano al Sol, posee un diámetro de aproximadamente 4.880 km y completa una órbita en solo 88 días terrestres. Su superficie está marcada por cráteres y llanuras basálticas, testimonio de su intensa historia de impactos. Debido a su delgada exosfera, la temperatura varía drásticamente, desde más de 400°C en el día hasta -180°C por la noche. Compuesto principalmente por un gran núcleo de hierro y una delgada capa de silicato, su alta densidad sugiere procesos de formación extremos. Un dato curioso: su día solar (amanecer a amanecer) dura 176 días terrestres, más largo que su año. Las sondas MESSENGER y BepiColombo han revelado un campo magnético débil y signos de contracción global, indicando que el planeta se ha “encogido” algunos kilómetros desde su formación.</p>
+      </div>
+    </a>
+
+    <a class="card-planet" href="{{ url_for('tema', slug='caracteristicas') }}">
+      <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1442458017215-285b83f65851?q=80&w=1600&auto=format&fit=crop');"></div>
+      <div class="overlay">
+        <div class="title">Venus</div>
+        <p>Venus tiene un tamaño similar al de la Tierra (diámetro ~12.104 km) pero un ambiente radicalmente distinto. Su atmósfera densa, compuesta principalmente de dióxido de carbono con nubes de ácido sulfúrico, produce un efecto invernadero desbocado que eleva su temperatura superficial por encima de 460°C. Se ubica a unos 108 millones de km del Sol y tarda 225 días en dar una vuelta completa. Sorprende su rotación retrógrada y extremadamente lenta: un día venusiano dura más que su año. La superficie muestra volcanes, llanuras y posibles señales de actividad volcánica reciente. Un dato curioso: el “brillo” de Venus ha servido durante siglos como faro celeste, visible a simple vista al amanecer o atardecer, conocido como la “estrella de la mañana” o “estrella vespertina”.</p>
+      </div>
+    </a>
+
+    <a class="card-planet" href="{{ url_for('tema', slug='mas-conocidos') }}">
+      <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop');"></div>
+      <div class="overlay">
+        <div class="title">Tierra</div>
+        <p>La Tierra, con un diámetro de ~12.742 km, es el único planeta conocido con vida. Orbita a una distancia media de 150 millones de km del Sol, en la llamada zona habitable. Su atmósfera, rica en nitrógeno y oxígeno, junto con la presencia de agua líquida y un campo magnético protector, crea condiciones idóneas para ecosistemas complejos. La tectónica de placas recicla la corteza y regula el clima a largo plazo mediante el ciclo del carbono. Un dato curioso: la Luna, relativamente grande para el tamaño de su planeta, estabiliza la inclinación del eje terrestre, moderando las estaciones. La diversidad geológica y biológica de la Tierra la convierte en referencia para comprender la habitabilidad de exoplanetas.</p>
+      </div>
+    </a>
+
+    <a class="card-planet" href="{{ url_for('buscar') }}">
+      <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1600&auto=format&fit=crop');"></div>
+      <div class="overlay">
+        <div class="title">Marte</div>
+        <p>Marte, el “planeta rojo”, tiene un diámetro de ~6.779 km y se ubica a una media de 228 millones de km del Sol. Su atmósfera tenue, compuesta sobre todo de CO₂, no retiene bien el calor, generando grandes oscilaciones térmicas. Posee volcanes gigantes como Olympus Mons y valles como Valles Marineris, evidencia de un pasado geológico activo. Las misiones rover han encontrado minerales hidratados y hielo subterráneo, sugiriendo que el agua líquida fluyó en el pasado. Un dato curioso: sus dos lunas, Fobos y Deimos, son pequeños y de forma irregular, probablemente asteroides capturados. La exploración de Marte es clave para entender la habitabilidad pasada y futura.</p>
+      </div>
+    </a>
+  </div>
+</section>
+{% endblock %}
+
